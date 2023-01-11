@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf2629 Cat-house</title>
+    <link rel="stylesheet" href="css/style7.css">
+    <link rel="icon" href="img/圓.png">
+    <script src="https://kit.fontawesome.com/1a52dd44d7.js" crossorigin="anonymous"></script>
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+</head>
+<header>
+    <nav class="navBar">
+        <div class="logo">
+            <a href="index.html"><img src="img/logo.png" class="leafLogo"></a>
+        </div>
+        <div class="nav__menu" id="menu__button">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <ul class="navItem">
+            <li class="navLink">
+                <a class="nava" href="#">特價商品</a>
+            </li>
+            <li class="navLink">
+                <a class="nava" href="#">熱賣商品</a>
+            </li>
+            <li class="navLink1">
+                <a class="nava1" href="#">所有商品</a>
+                <ul class="nav-sublist">
+                    <li class="navLinkblank"><a href="#" class="nava" id="nav-sublista"></a></li>
+                    <li class="navLink2"><a href="#" class="nava" id="nav-sublista">上身系列</a></li>
+                    <li class="navLink2"><a href="#" class="nava" id="nav-sublista">下身系列</a></li>
+                    <li class="navLink2"><a href="#" class="nava" id="nav-sublista">飾品配件</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="navIcon">
+            <div class="car">
+                <a href=""><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
+            </div>
+            <div class="member">
+                <a class="memberLink" href="index3.html"><i class="fa-solid fa-circle-user fa-lg"></i></a>
+            </div>
+        </div>
+    </nav>
+    <div class="nav_page"><!--遮罩-->
+        <div class="navham menu-click overlay" id="toright">
+            <!-- <a href="javascript:void(0)" id="closelay">&times;</a> -->
+            <ul class="navHamItem">
+                <li class="navLink">
+                    <a class="nava" href="#">特價商品</a>
+                </li>
+                <li class="navLink">
+                    <a class="nava" href="#">熱賣商品</a>
+                </li>
+                <li class="navLink1">
+                    <a class="nava1" href="#">所有商品</a>
+                    <ul class="nav-sublist">
+                        <li class="navLinkblank"><a href="#" class="nava" id="nav-sublista"></a></li>
+                        <li class="navLink2"><a href="#" class="nava" id="nav-sublista">上身系列</a></li>
+                        <li class="navLink2"><a href="#" class="nava" id="nav-sublista">下身系列</a></li>
+                        <li class="navLink2"><a href="#" class="nava" id="nav-sublista">飾品配件</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="shoppingCart">
+        <div class="order">
+            <p class="titlep">您的訂單</p>
+            <a class="shoppingMore" href="index.html"><i class="fa-sharp fa-solid fa-arrow-left"></i>&emsp;繼續購物</a>
+            <hr class="cardhr">
+            <div class="orderGoods">
+                <img class="goodImg" src="img/圖片 1.png" alt="商品圖">
+                <div class="goodInfo">
+                    <p class="goodTitle"></p>
+                    <p class="goodPrice">NT$ <span id="price"></span></p>
+                    <p class="goodSize">Size <span id="goodSize"></span></p>
+                    <p class="goodColor"></p>
+                    <div class="quantity">
+                        <button class="quantityButton quantity_minus"><i
+                                class="fa-sharp fa-solid fa-minus "></i></button>
+                        <input class="quantity_number" type="text" value="1">
+                        <button class="quantityButton quantity_plus"><i class="fa-sharp fa-solid fa-plus "></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr class="cardhr1">
+            <div class="orderCost">
+                <div class="subtotal">
+                    <p class="subtotalp">小計</p>
+                    <p class="subtotalp">NT$ <span id="subtotalp"></span></p>
+                </div>
+                <div class="freight">
+                    <p class="freightp">運費</p>
+                    <p class="freightp">NT$ 100</p>
+                </div>
+                <div class="total">
+                    <p class="totalp">總計</p>
+                    <p class="totalp">NT$ <span id="totalp"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="customer">
+            <p class="titlep">顧客資訊</p>
+            <hr class="cardhr">
+            <div class="customerInfo">
+                <div class="basicInfo">
+                    <div class="information"><label class="infop" for="name">顧客姓名</label><input id="name"
+                            class="infoInput" type="text" placeholder="Name，王小明"></div>
+                    <div class="information"><label class="infop" for="email">電子郵件</label><input id="email"
+                            class="infoInput" type="email" placeholder="Email，example@gmail.com"></div>
+                    <div class="information"><label class="infop" for="phone">聯絡電話</label><input id="phone"
+                            class="infoInput" type="text" placeholder="Phone，0912345678"></div>
+                </div>
+                <div class="orderInfo">
+                    <div class="information">
+                        <p class="infop">取貨方式</p>
+                        <select class="infoSelect" name="" id="">
+                            <option value="" selected>宅配</option>
+                        </select>
+                    </div>
+                    <div class="information"><label class="infop" for="address">收件地址</label><input id="address"
+                            class="infoInput" type="text" placeholder="Address，縣/市/鄉/鎮/區/街/路/號/樓"></div>
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+            <button class="submitButton submitText">完成訂單</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="footerText">
+                <ul class="box1">
+                    <li class="footerLink">
+                        <a class=footera href="">最新消息</a>
+                    </li>
+                    <li class="footerLink">
+                        <a class=footera href="">常見問題</a>
+                    </li>
+                    <li class="footerLink">
+                        <a class=footera href="">聯絡我們</a>
+                    </li>
+                </ul>
+                <div class="box2">
+                    <p class=footerp>Copyright © Leaf2629 Cat-house</p>
+                </div>
+            </div>
+            <div class="footerIcon">
+                <a class=icona href=""><i class="fa-brands fa-line fa-2x"></i></a>
+                <a class=icona href=""><i class="fa-brands fa-instagram fa-2x"></i></a>
+            </div>
+            <div class="box2xs">
+                <p class=footerp>Copyright © Leaf2629 Cat-house</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- script -->
+
+    <!--載入jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--載入jQuery UI 1.11.4-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            // 數量減少
+            $(".quantity_minus").click(function () {
+                quantityMinus();
+            })
+
+            function quantityMinus() {
+                let inputNum = $(".quantity_number").val();
+                if (inputNum > 1) {
+                    $(".quantity_number").val(--inputNum);
+                }
+                if (inputNum <= 1) {
+                    $(".quantity_number").val("1");
+                }
+            }
+
+            // 數量增加
+            $(".quantity_plus").click(function () {
+                quantityPlus();
+            })
+
+            function quantityPlus() {
+                let inputNum = $(".quantity_number").val();
+                $(".quantity_number").val(++inputNum);
+            }
+
+            // 完成訂單CSS變化
+            $(".submitButton").click(function () {
+                $(".submitButton").css("background-color", "#83978E");
+            })
+
+            $(".submitButton").mouseenter(function () {
+                $(".submitButton").css("background-color", "#48685A");
+                $(".submitButton").css("cursor", "pointer");
+            })
+
+            $(".submitButton").mouseleave(function () {
+                $(".submitButton").css("background-color", "#83978E");
+            })
+
+            // Initialize Firebase
+            firebase.initializeApp({
+                apiKey: "AIzaSyBMJUebx1GMqfdCA-XaP35oyKGH-AgiV2U",
+                authDomain: "finalproject-b039c.firebaseapp.com",
+                projectId: "finalproject-b039c",
+                storageBucket: "finalproject-b039c.appspot.com",
+                messagingSenderId: "501590789422",
+                appId: "1:501590789422:web:0c6e94aaef920e7891bebf"
+            });
+
+            // 購物車連結          
+            let db = firebase.firestore();
+            let shoppingCartRef = db.collection("shoppingCart");
+            let userEmail;
+            let chooseColor;
+
+            // Listening Login User
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    console.log(user);
+                    user.providerData.forEach(function (profile) {
+                        $("#name").val(profile.displayName);
+                        $("#email").val(profile.email);
+                        userEmail = profile.email;
+                        // 呼叫監聽
+                        shoppingCartDetail(userEmail);
+                    });
+                    $(".memberLink").attr("href", "index6.html");
+                } else {
+                    console.log("not logged in");
+                    alert("請先登入您的會員！")
+                    window.location.href = "../index3.html";
+                    $(".memberLink").attr("href", "index3.html");
+                }
+            });
+
+            let docRef;
+            let orderPrice;
+            let orderQuantity;
+            // 監聽
+            function shoppingCartDetail(userEmail) {
+                docRef = shoppingCartRef.doc(userEmail);
+                docRef.onSnapshot(
+                    function (doc) {
+                        $(".goodTitle").html(doc.data().goodsTitle);
+                        $("#price").html(doc.data().goodsPrice);
+                        $("#goodSize").html(doc.data().goodsSize);
+                        $(".goodColor").html(doc.data().goodsColor);
+                        $(".quantity_number").val(doc.data().goodsQuantity);
+                        orderPrice = parseInt(doc.data().goodsPrice);
+                        orderQuantity = parseInt(doc.data().goodsQuantity);
+                        $("#subtotalp").html(orderPrice * orderQuantity);
+                        $("#totalp").html((orderPrice * orderQuantity) + 100);
+                    }
+                );
+            }
+
+            // 購物車數量的加減按鈕被改變時註冊的事件
+            $(".quantity_number").change(function() {
+                $("#subtotalp").html(orderPrice*$(".quantity_number").val());
+                databaseUpdate(userEmail);
+            })
+
+            $(".quantity_minus").click(function() {
+                $("#subtotalp").html(orderPrice*$(".quantity_number").val());
+                databaseUpdate(userEmail);
+            })
+
+            $(".quantity_plus").click(function() {
+                $("#subtotalp").html(orderPrice*$(".quantity_number").val());
+                databaseUpdate(userEmail);
+            })
+
+            // 更新資料庫
+            function databaseUpdate(userEmail) {
+                docRef.set({
+                    "goodsTitle": $(".goodTitle").html(),
+                    "goodsPrice": orderPrice,
+                    "goodsSize": $("#goodSize").html(),
+                    "goodsColor": $(".goodColor").html(),
+                    "goodsQuantity": $(".quantity_number").val()
+                })
+            }
+            
+
+            //漢堡選單
+            $(".nav_page").hide();
+
+            let $ul = $(".navham"),
+                $menu = $(".nav__menu");
+
+            $($menu).click(function () {
+                $(".nav_page").toggle();
+                $(".nav_page").css({ "background-color": "rgba(0, 0, 0, 0.3);" });
+                $ul.toggle("menu-click");
+            })
+            
+        });
+        let btn = document.getElementById("menu__button");
+        btn.addEventListener("click", openlay, false);
+        let closelays = document.getElementById("closelay");
+        closelays.addEventListener("click", closelay, false);
+
+        function openlay() {
+            this.classList.toggle("change");
+            document.getElementById("toright").style.width = "40%";
+        }
+
+        function closelay() {
+            document.getElementById("toright").style.width = "0%";
+        }
+
+    </script>
+</body>
+
+</html>
